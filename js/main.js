@@ -1,5 +1,8 @@
 var Nakama = {};
-Nakama.configs = {};
+Nakama.configs = {
+  bulletSpeed :   1500,
+  shipSpeed   :   500
+};
 
 window.onload = function(){
   Nakama.game = new Phaser.Game(640,960,Phaser.AUTO,'',
@@ -31,29 +34,35 @@ var preload = function(){
 var create = function(){
   Nakama.game.physics.startSystem(Phaser.Physics.ARCADE);
   Nakama.keyboard = Nakama.game.input.keyboard;
-  Nakama.player = Nakama.game.add.sprite(
-    200,
-    200,
-    "assets",
-    "Spaceship1-Player.png"
-  );
+  Nakama.bulletGroup = Nakama.game.add.physicsGroup();
+  Nakama.playerGroup = Nakama.game.add.physicsGroup();
+  Nakama.players = [];
+  Nakama.players.push( new ShipController(400,700,"Spaceship1-Player.png",
+    {
+      up  : Phaser.Keyboard.UP,
+      down: Phaser.Keyboard.DOWN,
+      left: Phaser.Keyboard.LEFT,
+      right:Phaser.Keyboard.RIGHT,
+      fire: Phaser.Keyboard.SPACEBAR,
+      cooldown  : 0.4
+    }))
+
+  Nakama.players.push( new ShipController(200,700,"Spaceship1-Partner.png",
+    {
+      up  : Phaser.Keyboard.W,
+      down: Phaser.Keyboard.S,
+      left: Phaser.Keyboard.A,
+      right:Phaser.Keyboard.D,
+      fire: Phaser.Keyboard.CONTROL,
+      cooldown  : 0.4
+    }))
+
 }
 
 // update game state each frame
 var update = function(){
-  if(Nakama.keyboard.isDown(Phaser.Keyboard.UP)){
-    Nakama.player.position.y -=10;
-  }
-  if(Nakama.keyboard.isDown(Phaser.Keyboard.DOWN)){
-    Nakama.player.position.y +=10;
-  }
-  if(Nakama.keyboard.isDown(Phaser.Keyboard.LEFT)){
-    Nakama.player.position.x -=10;
-  }
-  if(Nakama.keyboard.isDown(Phaser.Keyboard.RIGHT)){
-    Nakama.player.position.x +=10;
-  }
-
+  for( var i=0;i<Nakama.players.length;i++)
+    Nakama.players[i].update();
 }
 
 // before camera render (mostly for debug)
