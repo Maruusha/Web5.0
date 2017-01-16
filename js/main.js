@@ -1,7 +1,8 @@
 var Nakama = {};
 Nakama.configs = {
   bulletSpeed :   1500,
-  shipSpeed   :   500
+  shipSpeed   :   500,
+  enemySpeed  :   100
 };
 
 window.onload = function(){
@@ -36,6 +37,7 @@ var create = function(){
   Nakama.keyboard = Nakama.game.input.keyboard;
   Nakama.bulletGroup = Nakama.game.add.physicsGroup();
   Nakama.playerGroup = Nakama.game.add.physicsGroup();
+  Nakama.enemyGroup  = Nakama.game.add.physicsGroup();
   Nakama.players = [];
   Nakama.players.push( new ShipController(400,700,"Spaceship1-Player.png",
     {
@@ -56,13 +58,17 @@ var create = function(){
       fire: Phaser.Keyboard.CONTROL,
       cooldown  : 0.4
     }))
-
+    Nakama.enemy = [];
+    Nakama.enemy.push( new EnemyController(200,200,"EnemyType1.png"))
+    Nakama.enemy.push( new EnemyController(400,200,"EnemyType2.png"))
 }
 
 // update game state each frame
 var update = function(){
   for( var i=0;i<Nakama.players.length;i++)
     Nakama.players[i].update();
+  for( var i=0;i<Nakama.enemy.lengt;i++)
+    Nakama.enemy[i].update();
 }
 
 // before camera render (mostly for debug)
