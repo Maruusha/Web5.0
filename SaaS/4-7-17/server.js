@@ -31,23 +31,23 @@ app.get('/question/:id', (req, res) => {
   });
 })
 
-router.post('/ask', (req, res) => {
-  //push question
-  let questionList;
-  try {
-    questionsList = JSON.parse(fs.readFileSync('question.json', 'utf-8'));
-  } catch (exception) {
-    console.log(exception);
-    questionsList = [];
-  }
-  question = {
-    content : req.body.question
-  };
-  questionsList.push(question);
-  // hình như sai đâu đó trong cái router này
-  res.redirect(`/question/${questionsList.length}`);
-});
-
+// router.post('/ask', (req, res) => {
+//   //push question
+//   let questionList;
+//   try {
+//     questionsList = JSON.parse(fs.readFileSync('question.json', 'utf-8'));
+//   } catch (exception) {
+//     console.log(exception);
+//     questionsList = [];
+//   }
+//   question = {
+//     content : req.body.question
+//   };
+//   questionsList.push(question);
+//   // hình như sai đâu đó trong cái router này
+//   res.redirect(`/question/${questionsList.length}`);
+// });
+//
 app.listen(3000, () =>{
   console.log('Server is running at localhost:3000');
 })
