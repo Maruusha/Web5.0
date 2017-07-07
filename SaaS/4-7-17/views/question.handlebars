@@ -1,9 +1,6 @@
-<form method="get" action="/api/question/{{id}}">
+<!-- <form method="get" action="/question/{{id}}"> -->
+<form method="get" action="/question/1">
   <label>{{content}}</label>
-  <input type="button" value="YES" onclick=function(){
-    redirect('/question/1');
-  }>
-  <input type="button" value="NO" onclick=function(){
-    redirect('/question/1');
-  }>
+  <input type="submit" value="YES">
+  <input type="submit" value="NO">
 </form>
