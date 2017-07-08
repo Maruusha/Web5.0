@@ -1,1 +1,17 @@
-[{"content":"dada dasdas"},{"content":"question 2"},{"content":"ahihi, no question"}]
+[
+  {
+    "content" : "dada dasdas",
+    "yes" : 5,
+    "no" : 0
+  },
+  {
+    "content":"question 1",
+    "yes" : 8,
+    "no" : 0
+  },
+  {
+    "content":"ahihi, no question",
+    "yes" : 68,
+    "no" : 0
+  }
+]
