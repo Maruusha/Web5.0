@@ -31,9 +31,9 @@ app.get('/', (req,res) =>{
 //question/:id
 app.use('/question', questionRouter);
 
-// app.get('/ask', (req, res) =>{
-//     res.render('ask');
-// })
+app.get('/ask', (req, res) =>{
+    res.render('ask');
+})
 
 app.listen(3000, () =>{
   console.log('Server is running at localhost:3000');
